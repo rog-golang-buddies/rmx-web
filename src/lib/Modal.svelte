@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { scale } from 'svelte/transition';
+
     let className = '';
     export { className as class };
     export let closeFunc;
@@ -7,7 +9,10 @@
 </script>
 
 <div class="modal-con {className}" on:click|self={closeFunc}>
-    <div style="width: {width};height: {height};" class="modal">
+    <div
+        transition:scale
+        style="width: {width};height: {height};"
+        class="modal">
         <slot />
     </div>
 </div>
