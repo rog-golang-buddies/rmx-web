@@ -1,22 +1,35 @@
 <script lang="ts">
-  import { Route, Router } from "svelte-navigator";
-  import Nav from "./lib/Nav.svelte";
-  import Home from "./pages/Home.svelte";
+    import { Route, Router } from 'svelte-navigator';
+    import Home from './pages/Home.svelte';
 </script>
 
 <main>
-  <Router>
-    <Nav />
-    <Route path="/">
-      <Home />
-    </Route>
-  </Router>
+    <Router>
+        <Route path="/">
+            <Home />
+        </Route>
+    </Router>
 </main>
 
 <style>
-  :global(*) {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+    @font-face {
+        font-family: Raleway;
+        src: url(./assets/fonts/Raleway-Regular.ttf);
+    }
+
+    :global(*) {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Raleway;
+    }
+
+    :global(button) {
+        cursor: pointer;
+    }
+
+    :global(.page) {
+        width: 100vw;
+        height: 100vh;
+    }
 </style>
