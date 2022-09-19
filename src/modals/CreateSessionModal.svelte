@@ -1,18 +1,29 @@
 <script lang="ts">
+    import { api } from '../api/api';
     import Modal from '../lib/Modal.svelte';
 
     export let closeFunc;
+
+    function CreateSession() {
+        api.post('/jam')
+            .then((res) => {
+                alert('session created. redirecting...');
+            })
+            .finally(() => {
+                closeFunc();
+            });
+    }
 </script>
 
 <Modal {closeFunc}>
-    <form class="new_session-form">
+    <form class="new_session-form" on:submit|preventDefault={CreateSession}>
         <h3>Start a new session</h3>
         <input
             type="text"
             name="name"
             id="name"
             placeholder="Session name (optional)" />
-        <button class="btn">Start</button>
+        <button class="btn" type="submit">Start</button>
     </form>
 </Modal>
 

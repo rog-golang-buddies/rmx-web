@@ -101,17 +101,14 @@
             height: 100%;
             padding: 2rem 0;
             list-style: none;
-            display: flex;
-            align-items: flex-start;
-            justify-content: flex-start;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
 
             & > .session {
-                width: 20rem;
                 padding: 0.5rem;
                 box-shadow: 0px 0px 5px rgba($color: #000000, $alpha: 0.3);
                 border-radius: 0.3rem;
-                margin: 0.5rem;
 
                 & > .info {
                     width: 100%;
