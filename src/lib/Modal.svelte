@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { scale } from 'svelte/transition';
+    import { fade, scale } from 'svelte/transition';
 
     let className = '';
     export { className as class };
@@ -8,7 +8,7 @@
     export let height = 'auto';
 </script>
 
-<div class="modal-con {className}" on:click|self={closeFunc}>
+<div transition:fade class="modal-con {className}" on:click|self={closeFunc}>
     <div
         transition:scale
         style="width: {width};height: {height};"

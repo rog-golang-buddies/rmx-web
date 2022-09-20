@@ -21,16 +21,29 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        outline: none;
         font-family: Raleway;
-    }
-
-    :global(button) {
-        cursor: pointer;
     }
 
     :global(.page) {
         width: 100vw;
         height: 100vh;
+    }
+
+    :global(.inpt) {
+        padding: 1rem;
+        outline: none;
+        border: none;
+        background-color: #dadada;
+        border-top-left-radius: 0.3rem;
+        border-top-right-radius: 0.3rem;
+        border-bottom: 3px solid #808080;
+        transition: 0.3s ease;
+    }
+
+    :global(.inpt:focus) {
+        background-color: #cfcfcf;
+        border-bottom: 3px solid #000;
     }
 
     :global(.btn) {
@@ -40,6 +53,7 @@
         color: #fff;
         border-radius: 0.3rem;
         font-size: 1rem;
+        cursor: pointer;
         transition: 0.3s ease;
     }
 

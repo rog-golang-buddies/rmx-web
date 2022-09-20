@@ -5,7 +5,9 @@
 
 <nav>
     <div class="logo-con">
-        <div class="logo">RMX</div>
+        <div class="logo">
+            <Link to="/">RMX</Link>
+        </div>
     </div>
     <div class="nav-items">
         <Link to="/"
@@ -51,12 +53,23 @@
             & > .logo {
                 width: 100%;
                 height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background-color: #000000; // needs theming
-                color: #fff; // needs theming
-                border-radius: 0.3rem;
+
+                & > :global(a) {
+                    widows: 100%;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: #000000; // needs theming
+                    color: #fff; // needs theming
+                    border-radius: 0.3rem;
+                    text-decoration: none;
+                    transition: 0.3s ease;
+                }
+
+                & > :global(a:hover) {
+                    transform: scale(0.9);
+                }
             }
         }
 

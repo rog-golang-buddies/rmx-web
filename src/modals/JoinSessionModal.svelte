@@ -1,65 +1,48 @@
 <script lang="ts">
+    import { api } from '../api/api';
+    import { onMount } from 'svelte';
     import Modal from '../lib/Modal.svelte';
+    import type { Session } from '../models/session';
 
     export let closeFunc;
+
+    let sessions: Session[] = [];
+
+    function LoadSessions() {
+        api.get('/jam').then(({ data }) => {
+            console.log(data);
+            sessions = data['sessions'];
+        });
+    }
+
+    onMount(() => {
+        LoadSessions();
+    });
 </script>
 
 <Modal {closeFunc}>
     <div class="join-modal">
         <div class="search-bar">
-            <input type="text" name="search" id="search" placeholder="Search" />
+            <input
+                class="inpt"
+                type="text"
+                name="search"
+                id="search"
+                placeholder="Search" />
             <div>Sort by:</div>
         </div>
         <ul class="session-list">
-            <li class="session">
-                <div class="info">
-                    <div class="name">Jam 1</div>
-                    <div class="owner">Jane Doe</div>
-                </div>
-                <button class="btn">Join</button>
-            </li>
-            <li class="session">
-                <div class="info">
-                    <div class="name">Jam 2</div>
-                    <div class="owner">John Doe</div>
-                </div>
-                <button class="btn">Join</button>
-            </li>
-            <li class="session">
-                <div class="info">
-                    <div class="name">Jam 3</div>
-                    <div class="owner">Jack Doe</div>
-                </div>
-                <button class="btn">Join</button>
-            </li>
-            <li class="session">
-                <div class="info">
-                    <div class="name">Jam 2</div>
-                    <div class="owner">John Doe</div>
-                </div>
-                <button class="btn">Join</button>
-            </li>
-            <li class="session">
-                <div class="info">
-                    <div class="name">Jam 2</div>
-                    <div class="owner">John Doe</div>
-                </div>
-                <button class="btn">Join</button>
-            </li>
-            <li class="session">
-                <div class="info">
-                    <div class="name">Jam 2</div>
-                    <div class="owner">John Doe</div>
-                </div>
-                <button class="btn">Join</button>
-            </li>
-            <li class="session">
-                <div class="info">
-                    <div class="name">Jam 2</div>
-                    <div class="owner">John Doe</div>
-                </div>
-                <button class="btn">Join</button>
-            </li>
+            {#each sessions as session}
+                <li class="session">
+                    <div class="info">
+                        <div class="name">
+                            {session.name ? session.name : session.sessionId}
+                        </div>
+                        <div class="owner">not implemented</div>
+                    </div>
+                    <button class="btn">Join</button>
+                </li>
+            {/each}
         </ul>
     </div>
 </Modal>
@@ -81,18 +64,6 @@
 
             & > input {
                 width: 100%;
-                padding: 1rem;
-                outline: none;
-                border: none;
-                background-color: #dadada;
-                border-top-left-radius: 0.3rem;
-                border-top-right-radius: 0.3rem;
-                border-bottom: 3px solid #808080;
-            }
-
-            & > input:focus {
-                background-color: #cfcfcf;
-                border-bottom: 3px solid #000;
             }
         }
 
@@ -106,9 +77,14 @@
             gap: 1rem;
 
             & > .session {
+                height: 10rem;
                 padding: 0.5rem;
                 box-shadow: 0px 0px 5px rgba($color: #000000, $alpha: 0.3);
                 border-radius: 0.3rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-direction: column;
 
                 & > .info {
                     width: 100%;
