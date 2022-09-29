@@ -4,6 +4,8 @@
 
     export let closeFunc;
 
+    let name: string = "";
+    let bpm: number;
     function CreateSession() {
         api.post('/jam')
             .then((res) => {
@@ -19,11 +21,19 @@
     <form class="new_session-form" on:submit|preventDefault={CreateSession}>
         <h3>Start a new session</h3>
         <input
+            bind:value={name}
             class="inpt"
             type="text"
             name="name"
             id="name"
             placeholder="Session name (optional)" />
+        <input
+            bind:value={bpm}
+            class="inpt"
+            type="number"
+            name="bpm"
+            id="bpm"
+            placeholder="BPM (will default to 120)" />
         <button class="btn" type="submit">Start</button>
     </form>
 </Modal>
